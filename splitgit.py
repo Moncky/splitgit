@@ -27,12 +27,15 @@ results = parser.parse_args()
 source_repo_dir = results.source_repo_dir
 subdir = results.subdir
 dest_repo_dir = results.dest_repo_dir
-dest_remote = results.remote
 dest_repo_url = results.git_url
 if results.new_repo_name != None:
     new_repo_name = results.new_repo_name
 else:
     new_repo_name = results.subdir
+if results.remote != None:
+    dest_remote = results.remote
+else:
+    dest_remote = 'origin'
 
 #Setup the source repo
 source_repo = Repo(source_repo_dir)
