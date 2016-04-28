@@ -87,4 +87,4 @@ dest_git = Git(dest_repo_dir)
 
 extract_dir(subdir)
 
-    add_remote(remote, dest_repo_url + "/" + new_repo_name)
+add_remote(remote, dest_repo_url + "/" + new_repo_name)
