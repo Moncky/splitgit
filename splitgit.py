@@ -21,8 +21,12 @@ parser.add_argument('-u', '--git_url', action='store', dest='git_url',
                     help='URL of your remote repo eg user@github.com:/user/my_repo.git')
 parser.add_argument('-n', '--name', action='store', dest='new_repo_name',
                     help='New name of the repo if not the same as SUBDIR')
+parser.add_argument('--force-push', action='store_true', dest='dest_push',
+                    help='Push to the remote after extracton.')
 
 results = parser.parse_args()
+
+print(results.dest_push)
 
 source_repo_dir = results.source_repo_dir
 subdir = results.subdir
@@ -80,6 +84,10 @@ def extract_dir(git_subdir):
 def add_remote(name, url):
     dest_repo.create_remote(name, url)
 
+#Push to the remote
+def push_remote():
+    dest_repo.push
+
 clean_dest()
 
 clone_repo()
@@ -90,4 +98,8 @@ dest_git = Git(dest_repo_dir)
 
 extract_dir(subdir)
 
-add_remote(remote, dest_repo_url + ":" + new_repo_name)
+add_remote(dest_remote, dest_repo_url + ":" + new_repo_name)
+
+if results.dest_push == True:
+    print("Pushing to Remote")
+    push_remote
